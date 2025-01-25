@@ -1,0 +1,25 @@
+def create_database():
+    # Connect to SQLite (it will create the database file if it doesn't exist)
+    conn = sqlite3.connect('user.db')
+    
+    # Create a cursor object to interact with the database
+    cursor = conn.cursor()
+    # Create table with user_id, user_name, dept, and code columns
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS sub (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL,
+        name TEXT NOT NULL,
+        dept TEXT NOT NULL,
+        code TEXT NOT NULL,
+        under TEXT NOT NULL
+    );
+    ''')
+     
+    # Commit the transaction and close the connection
+    conn.commit()
+    conn.close()
+    print("done2")
+
+# Call the function to create the database and table
+# create_database()
