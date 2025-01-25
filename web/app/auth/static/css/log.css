@@ -1,0 +1,100 @@
+*{
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body{
+    background-color: rgb(243, 241, 241);;
+}
+
+.container{
+    position:relative;
+    background-color:white;
+    width:650px;
+    height:30rem;
+    border:2px solid white;
+    border-radius:20px;
+    margin-top:7.2rem;
+    padding:20px 17px;
+    display:flex;
+    flex-wrap:nowrap;
+    box-shadow:2px 0 10px rgb(0, 0, 0,0.3);
+}
+
+.label{
+    display:block;
+    margin:0.5rem auto 0 auto;
+}
+
+.sign-in{
+    font-weight:800;
+    font-size:2rem;
+    margin:0.50rem auto 0.2rem auto;
+}
+
+.text{
+    
+    border:none;
+    border-bottom:2px solid black;
+    border-radius:0px;
+    margin:0.08rem auto 0.4rem auto;
+    opacity:0.4;
+}
+
+.box{
+    margin:0.8rem auto;    
+}
+
+.btn{
+    margin:0.5rem
+}
+
+img{
+    position:absolute;
+    height:100%;
+    width:57%;
+    top:0;
+    right:0;
+    border-radius:20px;
+}
+
+.text:hover{
+    opacity:1;
+}
+
+.log{
+    font-size:0.86rem;
+    font-weight:600;
+    opacity:0.7;
+    margin-top:2.8rem 0;
+    margin-bottom: 1.5rem;;
+}
+
+.log i{
+    color:black;
+    margin:0 0.3rem;
+    font-size:1.15rem;
+    opacity:0.7;
+}
+
+.log:hover{
+    opacity:0.85;
+}
+
+.log i:hover{
+    transform:scale(1.15);
+    opacity:1;
+    cursor: pointer;
+}
+
+.acc{
+    font-size:0.76rem;
+    font-weight: 500;
+}
+
+.acc-create:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
