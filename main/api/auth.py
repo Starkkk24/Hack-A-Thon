@@ -7,8 +7,6 @@ auth = Blueprint('auth', __name__)
 
 
 
-import sqlite3
-
 def ids_db():
     # Connect to the database
     connection = sqlite3.connect("user.db")  # Replace with your DB path

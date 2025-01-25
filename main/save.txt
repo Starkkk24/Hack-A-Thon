@@ -23,3 +23,34 @@ def create_database():
 
 # Call the function to create the database and table
 # create_database()
+
+
+
+
+
+def set():
+
+    # Connect to the SQLite3 database (creates the file if it doesn't exist)
+    connection = sqlite3.connect("user.db")
+
+    # Create a cursor object
+    cursor = connection.cursor()
+
+    # SQL query to add a column named 'age' to the table 'main'
+    alter_table_query = """
+    ALTER TABLE main
+    ADD COLUMN loc TEXT;
+    """
+
+    try:
+        # Execute the query
+        cursor.execute(alter_table_query)
+        print("Column 'age' added successfully!")
+    except sqlite3.OperationalError as e:
+        print(f"Error: {e}")
+
+    # Commit the changes and close the connection
+    connection.commit()
+    connection.close()
+
+set()
