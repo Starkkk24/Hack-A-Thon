@@ -87,6 +87,47 @@ def insert_user(id, user, name, dept, code, type, under=""):
             conn.close()
 
 
+import sqlite3
+
+def check_user_and_fetch_data(user_id):
+    
+    connection = sqlite3.connect("user.db")  # Replace with your database file path
+    cursor = connection.cursor()
+    
+    try:
+        # Check if user_id exists in the all_id table
+        cursor.execute("SELECT id FROM all_id WHERE user_id = ?", (user_id,))
+        result = cursor.fetchone()
+
+        if not result:
+            # user_id does not exist in all_id table
+            return [False, 201]
+
+        # Extract the id associated with the user_id
+        user_id_in_all_id = result[0]
+
+        # Determine which table to search
+        if user_id_in_all_id.startswith("M") or user_id_in_all_id.startswith("C"):
+            # Search in the main table
+            cursor.execute("SELECT * FROM main WHERE id = ?", (user_id_in_all_id,))
+        else:
+            # Search in the sub table
+            cursor.execute("SELECT * FROM sub WHERE id = ?", (user_id_in_all_id,))
+
+        # Fetch all rows from the query
+        data = cursor.fetchall()
+
+        # Return the data
+        return [True, data]
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return [False, "202"]
+    finally:
+        # Close the connection
+        connection.close()
+
+
 def reg_def(type, user_id, name, dept, code, un):
     load = ids_db()
     if load[0] == False:
@@ -102,8 +143,18 @@ def reg_def(type, user_id, name, dept, code, un):
     else:
         return [False, "106"]
 
-def log_def():
-    pass
+def log_def(user, code):
+    data = check_user_and_fetch_data(user)
+    print(data)
+    if data[0]:
+        load = list(data[1][0])
+        if load[1] == user:
+            if load[4] == code:
+                return data
+            else:
+                return [False, 203]
+    else:
+        return [False, 204]
 
 @auth.route('/web/reg', methods=['POST'])
 def auth_reg():
@@ -118,7 +169,6 @@ def auth_reg():
         t = "C"
     
     ret = reg_def(t, data["user"], data["name"], data["dept"], data["code"], un)
-    
     return jsonify(message=ret), 200
 
 
@@ -126,6 +176,5 @@ def auth_reg():
 def auth_log():
     user_id = request.args.get('userid')
     code = request.args.get('code')
-
-
-    return jsonify(message="This is API endpoint 2"), 200
+    load = log_def(user_id, code)
+    return jsonify(message=load), 200
