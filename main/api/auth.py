@@ -175,11 +175,14 @@ def number(user_id):
 
 
 def reg_def(type, user_id, name, dept, code, un):
+    print("11111")
     load = ids_db()
     if load[0] == False:
+        print("hi")
         return [False, "105"]
     ur = load[2]
-    load = load[1]
+    print(load)
+    # load = load[1]
     if user_id in ur:
         return [False, "101"]
     if load[0]:
@@ -235,7 +238,8 @@ def ids_sub_db():
 # ef insert_user(id, user, name, dept, code, type, under=""):
 def cre_site(name, code, un):
     load = ids_sub_db()
-    print(load)
+    load1 = load
+    print(load, 100)
     if load[0] == False:
         return [False, "105"]
     ur = load[2]
@@ -243,7 +247,7 @@ def cre_site(name, code, un):
     urs = unique_code_n(ur)
     idz = unique_code(load, "S")
     
-    if load[0]:
+    if load1[0]:
         load1 = insert_user(idz, urs, name, "site", code, "S", un)
         return load1 
     else:
@@ -261,7 +265,7 @@ def auth_reg():
         ret = cre_site(data["name"], data["code"], data["under"])
         return ret
         # un = data["under"]
-    elif data["dept"] == "Normal":
+    elif data["dept"] == "Buyer":
         t = "C"
     else:
         return jsonify(message=False), 200

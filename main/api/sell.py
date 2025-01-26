@@ -88,7 +88,7 @@ def lun(data):
         conn.close()
 
 
-@sell.route('/web/add', methods=['POST'])
+@sell.route('/web/add', methods=["POST"])
 def add():
     if request.method == 'POST':
         data = request.form.to_dict()

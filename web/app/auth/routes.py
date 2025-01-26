@@ -39,29 +39,36 @@ def reg():
             print(data)
             response = requests.post(url1, data=data)
             ma = response.text
+            print(ma)
             if ma[0] == False:
                 return render_template("reg.html", t1=t, error=" unknown error")
             else:
-                res = json.loads(ma)
-                res = res["message"]
-                ma = res
-                print(res)
-                if ma[1].startswith("M"):
-                    print(ma)
-                    session['user'] = [ma[1], ma[2], ma[3], "M"]
-                    session.permanent = True
-                    return redirect(url_for("app2.index"))
-                elif ma[1].startswith("C"):
-                    session['user'] = [ma[1], ma[2], ma[3], "C"]
-                    session.permanent = True
-                    return "to customer page"
-                elif ma[1].startswith("S"):
-                    session['user'] = [ma[0], ma[1], ma[2], "S", ma[5]]
-                    session.permanent = True
-                    return redirect(url_for("app3.index"))
-                
+                print(ma)
+                if ma[0]:
+                    res = json.loads(ma)
+                    res = res["message"]
+                    ma = res
+                    print(res)
+                    if res:
+                        if ma[1].startswith("M"):
+                            print(ma)
+                            session['user'] = [ma[1], ma[2], ma[3], "M"]
+                            session.permanent = True
+                            return redirect(url_for("app2.index"))
+                        elif ma[1].startswith("C"):
+                            session['user'] = [ma[1], ma[2], ma[3], "C"]
+                            session.permanent = True
+                            return redirect(url_for("app4.index"))
+                        elif ma[1].startswith("S"):
+                            session['user'] = [ma[0], ma[1], ma[2], "S", ma[5]]
+                            session.permanent = True
+                            return redirect(url_for("app3.index"))
+                    else:
+                        return render_template("reg.html", t1=t, error=" unknown error")
                 else:
-                    return "nothing"
+                    print("now")
+                    return render_template("reg.html", t1=t, error=" user name alrady exixt")
+                
             # session['user'] = request.form['username']
             # session.permanent = True 
             
@@ -118,7 +125,7 @@ def log():
             elif lo.startswith("C"):
                 session['user'] = [ma[0], ma[1], ma[2], "C"]
                 session.permanent = True
-                return "to customer page"
+                return redirect(url_for("app4.index"))
             elif lo.startswith("S"):
                 session['user'] = [ma[0], ma[1], ma[2], "S", ma[5]]
                 session.permanent = True

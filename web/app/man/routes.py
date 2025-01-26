@@ -3,16 +3,39 @@ import requests
 import sqlite3
 import json
 
+
+
 app2_bp = Blueprint('app2', __name__, template_folder='templates', static_folder="static")
 url = "http://127.0.0.1:5500/auth/web"
 
+
+@app2_bp.route('/gt/<name>')
+def gt(name):
+    print(name)
+    data = {     
+        'id': name,
+    }
+    url = "http://127.0.0.1:5500/man/web/gt"
+    response = requests.post(url, data=data)
+    load = response.text
+    load = json.loads(load)
+    print(load)
+    return render_template("site.html", data=load)
+    return redirect(url_for('app2.index'))
 
 @app2_bp.route('/')
 def index():
     if 'user' not in session:
         return redirect(url_for("app1.reg"))
-    
-    return render_template("index.html")
+    data = {     
+        'under': 'MGKKT',
+    }
+    url = "http://127.0.0.1:5500/man/web/get-site"
+    response = requests.post(url, data=data)
+    load = response.text
+    load = json.loads(load)
+  
+    return render_template("index.html", data=load)
 
 @app2_bp.route('/site')
 def site():

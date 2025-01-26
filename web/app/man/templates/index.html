@@ -21,13 +21,21 @@
         
         <ul id="request-list">
             <!-- Static List Item Example -->
-            <li class="list-item">
-                <div class="info">
-                    <p><strong>id:</strong> John Doe</p>
-                    <p><strong>Site Name:</strong> ExampleSite</p>
-                </div>
-                <button class="review-btn">Open</button>
-            </li>
+            
+            <ul id="request-list">
+                {% for index in range(data.id|length) %}
+                <li class="list-item">
+                    <div class="info">
+                        <!-- <p><strong>Site ID:</strong> {{ data.id[index] }}</p> -->
+                        <p><strong>Name:</strong> {{ data.names[index] }}</p>
+                        <p><strong>User ID:</strong> {{ data.user_ids[index] }}</p>
+                    </div>
+                    <button onclick="onclick=window.location.href='/app2/gt/{{data.id[index]}}';" class="review-btn">Review</button>
+                </li>
+                {% endfor %}
+            </ul>
+            
+            
             <!-- Dynamic items will be inserted here -->
         </ul>
     </div>
@@ -36,6 +44,13 @@
 
 
 <!--
+<li class="list-item">
+                <div class="info">
+                    <p><strong>id:</strong> John Doe</p>
+                    <p><strong>Site Name:</strong> ExampleSite</p>
+                </div>
+                <button class="review-btn">Open</button>
+            </li>
 
 <!DOCTYPE html>
 <html lang="en">
