@@ -28,6 +28,16 @@
                 </div>
                 <button class="review-btn">Open</button>
             </li>
+            {% for request in requests %}
+            <li class="list-item">
+                <div class="info">
+                    <p><strong>Site Name:</strong> {{ request.site_name }}</p>
+                    <p><strong>Name:</strong> {{ request.name }}</p>
+                    <p><strong>Date of Request:</strong> {{ request.date }}</p>
+                </div>
+                <button class="review-btn">Review</button>
+            </li>
+            {% endfor %}s
             <!-- Dynamic items will be inserted here -->
         </ul>
     </div>
