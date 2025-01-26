@@ -54,3 +54,43 @@ def set():
     connection.close()
 
 set()
+
+
+
+
+
+
+@app2_bp.route('/cre')
+def db():
+
+    # Connect to SQLite database (or create it if it doesn't exist)
+    conn = sqlite3.connect("items_database.db")
+
+    # Create a cursor object to interact with the database
+    cursor = conn.cursor()
+
+    # Create the 'items' table
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS items (
+        id TEXT PRIMARY KEY AUTOINCREMENT, -- Auto-incrementing ID
+        name TEXT NOT NULL,                   -- Name of the item (required)
+        weight REAL,                          -- Weight of the item
+        price REAL,                           -- Price of the item
+        grid TEXT,                            -- Grid information
+        can TEXT,                             -- Can field
+        cnot TEXT,                            -- Cannot field
+        des TEXT,                             -- Description
+        date TEXT,                            -- Date
+        status TEXT,                          -- Status of the item
+        under TEXT                            -- Under field
+    )
+    ''')
+
+    # Commit changes to the database
+    conn.commit()
+
+    # Close the connection
+    conn.close()
+
+    print("Database and table 'items' created successfully.")
+    return "finished"

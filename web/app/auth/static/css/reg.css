@@ -69,3 +69,7 @@ img{
 .text:hover{
     opacity:1;
 }
+
+h5 {
+    color: red;
+}

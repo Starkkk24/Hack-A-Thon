@@ -98,3 +98,7 @@ img{
     text-decoration: underline;
     cursor: pointer;
 }
+
+h5 {
+    color: red;
+}

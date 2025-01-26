@@ -1,17 +1,26 @@
 import requests
 
-url = "http://192.168.214.161:5000/auth/web/log"
-data = {
-    "user": "z",
+url = "http://127.0.0.1:5500/sell/web/add"
+data1 = {
+    "user": "zt",
     "name": "saswath",
-    "dept": "Normal",
+    "dept": "site",
     "code": "hello",
     "under": "zzzz"
 }
 params = {
-    "userid": "z",
-    "code": "hello1"
+    "userid": "22832",
+    "code": "dsfghjk"
 }
-response = requests.get(url, params=params)
-# response = requests.post(url, data=data)
+
+data = {
+        
+        'name': 'Example Item',
+        'weight': 12.5,
+        'price': 199.99,
+        'des': 'This is an example description.',
+        'under': 'wert'
+    }
+# response = requests.get(url, params=params)
+response = requests.post(url, data=data)
 print(response.text)

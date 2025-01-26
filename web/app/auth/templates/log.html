@@ -14,23 +14,23 @@
 <body>
     <div class="login container">
         <div class="user">
-            <form>
+            <form method="post">
                 <div class="image"><img src="{{ url_for('app1.static', filename='doodle_2.png') }}" alt="doodle_2">
 
                 <div class="sign-in">Sign in</div>
-
+                <h5>{{error}}</h5>
                 <div class="box">
                     <label for="user-id" class="label">User Id</label>
-                    <input type="text" class="text form-control" id="user-id" placeholder="Your User Id">
+                    <input type="text" class="text form-control" id="user-id" name="n" placeholder="Your User Id">
                 </div>
 
                 <div class="box">
                     <label for="pass" class="label">Password</label>
-                    <input type="password" class="text form-control" id="pass" placeholder="Password">
+                    <input type="password" class="text form-control" id="pass" name="c" placeholder="Password">
                 </div>
 
                 <div class="box">
-                    <button type="button" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </div>
 
                 <div class="log">Or login with

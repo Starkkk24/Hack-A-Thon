@@ -1,0 +1,138 @@
+/* style.css */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+#main{
+    position:relative;
+    left:-7.5rem;
+    font-weight:570;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    position:relative;
+    font-size:1.5rem;
+    left:-7rem;
+    font-weight:600;
+}
+
+nav a{
+    margin:auto 2rem; 
+}
+
+/* Header styles (same as before) */
+header {
+    background-color: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color:rgb(0, 0, 0);
+}
+
+header a{
+    color:black;
+    text-decoration: none;
+}
+/* ... header styles */
+
+main.buy-page {
+    padding: 40px 0;
+}
+
+.buy-content {
+    display: flex;
+    gap: 30px;
+}
+
+aside.filters {
+    position:absolute;
+    left:0;
+    width: 25rem;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.filters h3 {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Main content*/
+
+.results{
+    position:absolute;
+    display:flex;
+    flex-wrap:wrap;
+    margin-left:19rem;
+}
+
+.result-card{
+    position:relative;
+    width:27rem;
+    height:17rem;
+    border:2px solid black;
+    border-radius:20px;
+    padding:1rem;
+    margin:1rem 0.4rem;
+}
+
+.available-date{
+    position:relative;
+    font-size: 1.6rem;
+    background-color:rgba(223, 222, 222, 0.884);
+    border-radius:30px;
+    padding:0.5rem;
+}
+
+.result-card img{
+    position:absolute;
+    height:50%;
+    width:42%;
+    right:1.8rem;
+    bottom:0.7rem;
+    border-radius:20px;
+}
+
+.result-card:hover{
+    box-shadow:2px 2px 12px 3px rgba(0, 0, 0, 0.514);
+}
+
+.result-card:hover .available-date:hover{
+    background-color:rgba(209, 208, 208, 0.92);
+    cursor:pointer;
+}
+
+.result-card:hover h3:hover{
+    text-decoration: underline;
+}
