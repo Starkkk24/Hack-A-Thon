@@ -22,5 +22,7 @@ data = {
 # response = requests.post(url, data=data)
 # print(response.text)
 url = "http://127.0.0.1:5500/man/web/get-site"
-response = requests.post(url, data=data)
-print(response.text)
+# response = requests.post(url, data=data)
+# print(response.text)
+url = "http://127.0.0.1:5500/man/web/del"
+response = requests.get(url)

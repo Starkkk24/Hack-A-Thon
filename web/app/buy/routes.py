@@ -13,3 +13,11 @@ def index():
         return redirect(url_for("app1.reg"))
     
     return render_template("listing.html")
+
+
+@app4_bp.route('/pro')
+def pro():
+    if 'user' not in session:
+        return redirect(url_for("app1.reg"))
+    
+    return render_template("pro.html")

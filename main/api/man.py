@@ -12,30 +12,25 @@ def auth_reg():
     return "nothi"
 
 def clear_table(db_path, table_name):
-    """
-    Deletes all data from the specified table in the SQLite database.
+    import sqlite3
 
-    Parameters:
-    - db_path (str): Path to the SQLite database file.
-    - table_name (str): Name of the table to clear.
-    """
-    try:
-        # Connect to the database
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
+    # Connect to your SQLite database
+    conn = sqlite3.connect('items_database.db')  # Update the database name
+    cursor = conn.cursor()
 
-        # SQL query to delete all data
-        query = f"DELETE FROM {table_name};"
-        cursor.execute(query)
+    # Delete all data from the 'items' table
+    cursor.execute("DELETE FROM items")
 
-      
-        # Commit the changes
-        conn.commit()
-        print(f"All data from table '{table_name}' has been cleared.")
-    except sqlite3.Error as e:
-        print(f"An error occurred: {e}")
-    finally:
-        conn.close()
+    # Commit the transaction to apply the deletion
+    conn.commit()
+
+    # Check the deletion (optional)
+    cursor.execute("SELECT * FROM items")
+    print(cursor.fetchall())  # Should return an empty list []
+
+    # Close the connection to the database
+    conn.close()
+
 
 
 @man.route('/web/del')
@@ -125,3 +120,5 @@ def list_pro():
     }
 
     return jsonify(response)
+
+

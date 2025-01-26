@@ -75,7 +75,7 @@ def lun(data):
             
             data['des'],
             current_date,
-            "pending..",
+            "pending",
             data['under']
         ))
 
